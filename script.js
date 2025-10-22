@@ -138,7 +138,7 @@ function initScrollAnimations() {
     }, observerOptions);
 
     // Observe elements for animation
-    const animateElements = document.querySelectorAll('.contact-section');
+    const animateElements = document.querySelectorAll('.services-section, .contact-section');
     animateElements.forEach(el => observer.observe(el));
 }
 
