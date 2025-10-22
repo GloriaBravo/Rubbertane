@@ -1,121 +1,10 @@
 // DOM Content Loaded
 document.addEventListener('DOMContentLoaded', function() {
-    initCarousel();
-    initProductCarousel();
     initMobileMenu();
     initFormValidation();
     initScrollAnimations();
 });
 
-// Carousel Functionality
-function initCarousel() {
-    const slides = document.querySelectorAll('.carousel-slide');
-    const prevBtn = document.querySelector('.carousel-prev');
-    const nextBtn = document.querySelector('.carousel-next');
-    let currentSlide = 0;
-    let autoPlayInterval;
-
-    function showSlide(index) {
-        slides.forEach(slide => slide.classList.remove('active'));
-        slides[index].classList.add('active');
-        currentSlide = index;
-    }
-
-    function nextSlide() {
-        currentSlide = (currentSlide + 1) % slides.length;
-        showSlide(currentSlide);
-    }
-
-    function prevSlide() {
-        currentSlide = (currentSlide - 1 + slides.length) % slides.length;
-        showSlide(currentSlide);
-    }
-
-    function startAutoPlay() {
-        autoPlayInterval = setInterval(nextSlide, 5000);
-    }
-
-    function stopAutoPlay() {
-        clearInterval(autoPlayInterval);
-    }
-
-    // Event listeners
-    if (prevBtn && nextBtn) {
-        prevBtn.addEventListener('click', () => {
-            prevSlide();
-            stopAutoPlay();
-            startAutoPlay();
-        });
-
-        nextBtn.addEventListener('click', () => {
-            nextSlide();
-            stopAutoPlay();
-            startAutoPlay();
-        });
-    }
-
-    // Keyboard navigation
-    document.addEventListener('keydown', (e) => {
-        if (e.key === 'ArrowLeft') {
-            prevSlide();
-            stopAutoPlay();
-            startAutoPlay();
-        } else if (e.key === 'ArrowRight') {
-            nextSlide();
-            stopAutoPlay();
-            startAutoPlay();
-        }
-    });
-
-    // Pause on hover
-    const carousel = document.querySelector('.hero-carousel');
-    if (carousel) {
-        carousel.addEventListener('mouseenter', stopAutoPlay);
-        carousel.addEventListener('mouseleave', startAutoPlay);
-    }
-
-    // Start autoplay
-    startAutoPlay();
-}
-
-// Product Carousel Functionality
-function initProductCarousel() {
-    const slides = document.querySelectorAll('.product-slide');
-    const prevBtn = document.querySelector('.product-prev');
-    const nextBtn = document.querySelector('.product-next');
-    let currentSlide = 0;
-
-    function showSlide(index) {
-        slides.forEach(slide => slide.classList.remove('active'));
-        slides[index].classList.add('active');
-        currentSlide = index;
-    }
-
-    function nextSlide() {
-        currentSlide = (currentSlide + 1) % slides.length;
-        showSlide(currentSlide);
-    }
-
-    function prevSlide() {
-        currentSlide = (currentSlide - 1 + slides.length) % slides.length;
-        showSlide(currentSlide);
-    }
-
-    // Event listeners
-    if (prevBtn && nextBtn) {
-        prevBtn.addEventListener('click', prevSlide);
-        nextBtn.addEventListener('click', nextSlide);
-    }
-
-    // Keyboard navigation
-    document.addEventListener('keydown', (e) => {
-        if (e.key === 'ArrowLeft' && document.activeElement !== document.querySelector('input, textarea')) {
-            prevSlide();
-        } else if (e.key === 'ArrowRight' && document.activeElement !== document.querySelector('input, textarea')) {
-            nextSlide();
-        }
-    });
-}
 
 // Mobile Menu Functionality
 function initMobileMenu() {
@@ -249,7 +138,7 @@ function initScrollAnimations() {
     }, observerOptions);
 
     // Observe elements for animation
-    const animateElements = document.querySelectorAll('.product-gallery, .contact-section');
+    const animateElements = document.querySelectorAll('.contact-section');
     animateElements.forEach(el => observer.observe(el));
 }
 
